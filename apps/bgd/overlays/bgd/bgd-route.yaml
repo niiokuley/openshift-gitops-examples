@@ -1,14 +1,19 @@
-apiVersion: route.openshift.io/v1
-kind: Route
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   labels:
-    app: bgd
+  app.kubernetes.io/instance: bgd-app
   name: bgd
   namespace: bgd
 spec:
-  port:
-    targetPort: 8080
-  to:
-    kind: Service
-    name: bgd
-    weight: 100
+  rules:
+  - host: bgd.devnation
+    http:
+      paths:
+      - backend:
+          service:
+            name: bgd
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
