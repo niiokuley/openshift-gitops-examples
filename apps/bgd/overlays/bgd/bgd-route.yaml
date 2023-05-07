@@ -17,3 +17,4 @@
 #              number: 8080
 #        path: /
 #        pathType: Prefix
+###no need in local cluster
